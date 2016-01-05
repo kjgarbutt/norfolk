@@ -34,7 +34,6 @@ public class NorfolkWithUI extends GUIState	{
     private GeomVectorFieldPortrayal lsoaPortrayal = new GeomVectorFieldPortrayal();
     private GeomVectorFieldPortrayal floodPortrayal = new GeomVectorFieldPortrayal();
     private GeomVectorFieldPortrayal roadsPortrayal = new GeomVectorFieldPortrayal();
-    //private GeomVectorFieldPortrayal floodedroadsPortrayal = new GeomVectorFieldPortrayal();
     private GeomVectorFieldPortrayal agentPortrayal = new GeomVectorFieldPortrayal();
     private GeomVectorFieldPortrayal ngoagentPortrayal = new GeomVectorFieldPortrayal();
     private GeomVectorFieldPortrayal elderlyagentPortrayal = new GeomVectorFieldPortrayal();
@@ -63,7 +62,6 @@ public class NorfolkWithUI extends GUIState	{
         display.attach(lsoaPortrayal, "LSOA", true);
         display.attach(floodPortrayal, "Flood Zone", true);
         display.attach(roadsPortrayal, "Roads", true);
-        //display.attach(floodedroadsPortrayal, "Flooded Roads", true);
         display.attach(agentPortrayal, "Standard Agents", true);
         display.attach(ngoagentPortrayal, "NGO Agents", true);
         display.attach(elderlyagentPortrayal, "Elderly Agents", true);
@@ -77,8 +75,6 @@ public class NorfolkWithUI extends GUIState	{
     /** Begins the simulation */
     public void start()	{
         super.start();
-        
-        // set up portrayals
         setupPortrayals();
     }
     
@@ -91,26 +87,21 @@ public class NorfolkWithUI extends GUIState	{
         lsoaPortrayal.setField(world.lsoa);
         lsoaPortrayal.setPortrayalForAll(new GeomPortrayal(Color.LIGHT_GRAY,true));   
         floodPortrayal.setField(world.flood);
-        floodPortrayal.setPortrayalForAll(new GeomPortrayal(Color.CYAN,true));        
-        //floodedroadsPortrayal.setField(world.floodedroads);
-        //floodedroadsPortrayal.setPortrayalForAll(new GeomPortrayal(Color.DARK_GRAY,0.1,true));
+        floodPortrayal.setPortrayalForAll(new GeomPortrayal(Color.CYAN,true));
         roadsPortrayal.setField(world.roads);
         roadsPortrayal.setPortrayalForAll(new GeomPortrayal(Color.BLACK,0.1,true));
         
         agentPortrayal.setField(world.agents);
-        // simple agent Portrayal
-        // agentPortrayal.setPortrayalForAll(new GeomPortrayal(Color.GREEN,70,true));
         agentPortrayal.setPortrayalForAll(new MovablePortrayal2D(new OvalPortrayal2D(Color.GREEN, 1)));
         
         ngoagentPortrayal.setField(world.ngoagents);
         ngoagentPortrayal.setPortrayalForAll(new sim.portrayal.simple.RectanglePortrayal2D(Color.RED, 1));
         
         elderlyagentPortrayal.setField(world.elderlyagents);
-        //elderlyagentPortrayal.setPortrayalForAll(new GeomPortrayal(Color.GRAY,70,true));
         elderlyagentPortrayal.setPortrayalForAll(new sim.portrayal.simple.HexagonalPortrayal2D(Color.GRAY, 1));
         
         limactagentPortrayal.setField(world.limactagents);
-        limactagentPortrayal.setPortrayalForAll(new GeomPortrayal(Color.ORANGE,70,true));
+        limactagentPortrayal.setPortrayalForAll(new GeomPortrayal(Color.ORANGE,50,true));
         // ava.awt.geom.RoundRectangle2D.Float, java.awt.geom.RoundRectangle2D.Double
         
         // reset stuff

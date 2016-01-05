@@ -37,10 +37,10 @@ public class Norfolk extends SimState	{
     public static final int HEIGHT = 700; 
     
     /////////////// Objects //////////////////////////////////////////////
-	public int numAgents = 500;
-	public int numNGOAgents = 500;
-	public int numElderlyAgents = 500;
-	public int numLimActAgents = 500;
+	public int numAgents = 1000;
+	public int numNGOAgents = 1000;
+	public int numElderlyAgents = 1000;
+	public int numLimActAgents = 1000;
 
 	/////////////// Containers ///////////////////////////////////////
     public GeomVectorField roads = new GeomVectorField(WIDTH, HEIGHT);
@@ -84,7 +84,6 @@ public class Norfolk extends SimState	{
             
         	System.out.println("Reading Road Network layer...");
             URL roadGeometry = Norfolk.class.getResource("data/NorfolkITN.shp");
-            //URL roadGeometry = Norfolk.class.getResource("/Users/KJGarbutt/Desktop/ITNLSOA.shp");
             ShapeFileImporter.read(roadGeometry, roads);
             MBR.expandToInclude(roads.getMBR());
             
@@ -99,7 +98,6 @@ public class Norfolk extends SimState	{
             // Now synchronize the MBR for all GeomFields to ensure they cover the same area
             lsoa.setMBR(MBR);
             flood.setMBR(MBR);
-            //floodedroads.setMBR(MBR);
             roads.setMBR(MBR);
 
             System.out.println("Creating road network...");
@@ -155,6 +153,7 @@ public class Norfolk extends SimState	{
     public void finish()	{
     	super.finish();
     	System.out.println("Simulation ended by user.");
+    	/*
         System.out.println("Attempting to export agent data...");
         try	{
         	ShapeFileExporter.write("agents", agents);
@@ -162,6 +161,7 @@ public class Norfolk extends SimState	{
         	System.out.println("Export failed.");
         	e.printStackTrace();
         }
+        */
     }
     
     /**
